@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "229F-Sunflower-GalacticGolf.sln"
+    "dotnet.defaultSolution": "229f-Sunflower-GalacticGolf.sln"
 }

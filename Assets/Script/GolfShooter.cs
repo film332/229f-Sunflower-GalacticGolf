@@ -3,8 +3,6 @@ using TMPro;
 
 public class GolfShooter : MonoBehaviour
 {
-    public int shotCount = 0;  // จำนวนครั้งที่ยิงในด่านนี้
-
     public Transform aimDirection;      // Drag AimDirection ที่ลูกกอล์ฟมาวาง
     public LineRenderer aimLine;          // Drag AimLine (ที่มี LineRenderer)
     public Rigidbody rb;                // Rigidbody ของลูกกอล์ฟ
@@ -12,12 +10,13 @@ public class GolfShooter : MonoBehaviour
     public float chargeSpeed = 5f;        // ความเร็วชาร์จแรง
     public float ballMass = 1f;           // มวลลูกกอล์ฟ (ปรับตามดาว)
     public TextMeshProUGUI powerText;     // Drag UI Text สำหรับแสดงค่าแรง
-    public TextMeshProUGUI shotText;  // UI สำหรับแสดงจำนวนครั้งที่ยิง
-
+    public TextMeshProUGUI shotText;      // ลาก ShotText เข้ามาใน Inspector
+    public TextMeshProUGUI winText;       // ลาก WinText เข้ามาใน Inspector
 
     private float currentPower = 0f;
     private bool isCharging = false;
     private bool isMoving = false;
+    private int shotCount = 0;            // จำนวนครั้งยิง
 
     void Update()
     {
@@ -77,5 +76,30 @@ public class GolfShooter : MonoBehaviour
             aimLine.enabled = false;
         if (powerText != null)
             powerText.text = "";
+
+        // ✨ เพิ่มจำนวนครั้งยิง
+        shotCount++;
+
+        // ✨ แสดงผลบน UI
+        if (shotText != null)
+            shotText.text = "Shots: " + shotCount;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Goal"))
+        {
+            Debug.Log("You Win!");
+            ShowWinUI();
+
+            // ปิดการควบคุม
+            this.enabled = false;
+        }
+    }
+
+    void ShowWinUI()
+    {
+        if (winText != null)
+            winText.enabled = true; // แสดงข้อความชนะ
     }
 }

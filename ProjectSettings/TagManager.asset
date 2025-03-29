@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TrackingObject
   - Goal
+  - GolfBall
   layers:
   - Default
   - TransparentFX

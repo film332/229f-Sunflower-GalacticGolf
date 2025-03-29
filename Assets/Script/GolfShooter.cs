@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // เพิ่มการใช้งาน SceneManagement
 using TMPro;
 
 public class GolfShooter : MonoBehaviour
@@ -12,7 +13,8 @@ public class GolfShooter : MonoBehaviour
     public TextMeshProUGUI powerText;     // Drag UI Text สำหรับแสดงค่าแรง
     public TextMeshProUGUI shotText;      // ลาก ShotText เข้ามาใน Inspector
     public TextMeshProUGUI winText;       // ลาก WinText เข้ามาใน Inspector
-
+    public GameObject shootEffectPrefab; // Drag Prefab FX ยิงเข้ามา
+    public Transform shootEffectSpawnPoint; // จุดที่ FX จะเกิด
     private Vector3 startPosition;       // ตำแหน่งเริ่มต้น
     private Quaternion startRotation;    // หมุนเริ่มต้น
     private float currentPower = 0f;
@@ -84,6 +86,12 @@ public class GolfShooter : MonoBehaviour
         isCharging = false;
         isMoving = true;
 
+        // ✨ เล่น Particle Effect ตอนยิง
+        if (shootEffectPrefab != null && shootEffectSpawnPoint != null)
+        {
+            Instantiate(shootEffectPrefab, shootEffectSpawnPoint.position, Quaternion.identity);
+        }
+
         // ซ่อนเส้นเล็งและ UI ทันทีเมื่อยิงลูก
         if (aimLine != null)
             aimLine.enabled = false;
@@ -119,6 +127,26 @@ public class GolfShooter : MonoBehaviour
     {
         if (winText != null)
             winText.enabled = true; // แสดงข้อความชนะ
+
+        // ✨ โหลดด่านถัดไปหลังดีเลย์ 2 วินาที
+        Invoke("LoadNextLevel", 2f);
+    }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        // ถ้ามีด่านถัดไปจริง ค่อยโหลด
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            // ถ้าไม่มีด่านแล้ว = กลับเมนู (หรือจบด่าน)
+            SceneManager.LoadScene("MainMenu"); // เปลี่ยนตามชื่อ Scene เมนูของเธอ
+        }
     }
 
     void ResetBall()

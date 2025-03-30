@@ -123,14 +123,17 @@ public class GolfShooter : MonoBehaviour
         }
     }
 
-    void ShowWinUI()
-    {
-        if (winText != null)
-            winText.enabled = true; // แสดงข้อความชนะ
+   void ShowWinUI()
+{
+    if (winText != null)
+        winText.text = "You Win!\nShots Used: " + shotCount;
 
-        // ✨ โหลดด่านถัดไปหลังดีเลย์ 2 วินาที
-        Invoke("LoadNextLevel", 2f);
-    }
+    winText.enabled = true;
+
+    // ✨ โหลดด่านถัดไปหลังดีเลย์ 2 วินาที
+    Invoke("LoadNextLevel", 2f);
+}
+
 
     void LoadNextLevel()
     {

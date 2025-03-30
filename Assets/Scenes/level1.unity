@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14dddb7226cf074484697127623c9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityStrength: 200
+  gravityStrength: 1000
   pullRadius: 12
 --- !u!135 &240899253
 SphereCollider:
@@ -2814,16 +2814,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
       propertyPath: m_text
-      value: You Win!
+      value: 'You Win!
+
+        44'
       objectReference: {fileID: 0}
     - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 262eaa2958dc7fe438e18464ee4fac0a, type: 2}
+    - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
+      propertyPath: m_lineSpacing
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6721034023901221889, guid: a217b8503ec29a247955f6c89dd1dd2f, type: 3}
       propertyPath: m_sharedMaterial
       value: 
